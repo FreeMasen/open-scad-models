@@ -48,7 +48,7 @@ difference() {
         color([0.25,0.5,1])
         rotate([0, 90, 0])
         translate([-14.5, 1, 0])
-        roundedBox(size=[29, 75, 2`], sidesonly=false, radius=0.8);
+        roundedBox(size=[29, 75, 2], sidesonly=false, radius=0.8);
     }
     translate(v = [
         0,
