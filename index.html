@@ -1,13 +1,224 @@
-<!DOCTYPE html><html></head></head><body><ul>
-<li><a href=renders/CanStand2.0.stl />CanStand2.0</li>
-<li><a href=renders/CanStand3.0-Short.stl />CanStand3.0-Short</li>
-<li><a href=renders/CanStand3.0-Tall.stl />CanStand3.0-Tall</li>
-<li><a href=renders/art-hook-a.stl />art-hook-a</li>
-<li><a href=renders/art-hook-b.stl />art-hook-b</li>
-<li><a href=renders/candelHolder.stl />candelHolder</li>
-<li><a href=renders/pegboard-mount-cap.stl />pegboard-mount-cap</li>
-<li><a href=renders/pegboard-mount.stl />pegboard-mount</li>
-<li><a href=renders/small-tree-stand.stl />small-tree-stand</li>
-<li><a href=renders/squareStencil.stl />squareStencil</li>
-<li><a href=renders/support-arch-module.stl />support-arch-module</li>
-</ul></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+        <style>
+            body {
+                width:100%;
+                display:flex;
+                flex-flow:column;
+                align-items:center;
+            }
+            header {
+                width: 100%;
+                text-align: center;
+            }
+            main {
+                min-width: 500px;
+                max-width: 900px;
+            }
+
+            #stl-render {
+                border-radius: 30%;
+                margin: 2px;
+                min-width: 795px;
+                min-height: 795px;
+                background-color: #fff;
+            }
+
+            #model-container {
+                margin-top: 12px;
+                margin-bottom: 12px;
+                min-width: 800px;
+                min-height: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Freemasen's Models</h1>
+        </header>
+        <main>
+            <div id="file-list" class="nes-container with-title is-dark">
+                <h2 class="title">Files</h2>
+                <table class="nes-table is-bordered is-centered is-dark">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Render</th>
+                            <th>Download<br />.stl</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>CanStand2.0</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="CanStand2.0.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="CanStand2.0.stl" download="CanStand2.0.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>CanStand3.0-Short</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="CanStand3.0-Short.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="CanStand3.0-Short.stl" download="CanStand3.0-Short.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>CanStand3.0-Tall</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="CanStand3.0-Tall.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="CanStand3.0-Tall.stl" download="CanStand3.0-Tall.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>art-hook-a</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="art-hook-a.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="art-hook-a.stl" download="art-hook-a.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>art-hook-b</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="art-hook-b.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="art-hook-b.stl" download="art-hook-b.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>candelHolder</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="candelHolder.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="candelHolder.stl" download="candelHolder.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>pegboard-mount-cap</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="pegboard-mount-cap.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="pegboard-mount-cap.stl" download="pegboard-mount-cap.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>pegboard-mount</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="pegboard-mount.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="pegboard-mount.stl" download="pegboard-mount.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>small-tree-stand</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="small-tree-stand.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="small-tree-stand.stl" download="small-tree-stand.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>squareStencil</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="squareStencil.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="squareStencil.stl" download="squareStencil.stl.stl">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>support-arch-module</td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="support-arch-module.stl"></button>
+                        </td>
+                        <td><a class="nes-btn" href="support-arch-module.stl" download="support-arch-module.stl.stl">V</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <div id="model-container" class="nes-container with-title is-dark">
+            <h2 class="title">Model</h2>
+            <div id="stl-render"></div>
+        </div>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+                }
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js"
+            integrity="sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="module">
+            import * as THREE from 'three';
+
+            import Stats from 'three/addons/libs/stats.module.js';
+
+            import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+            import { OrbitControls  } from 'three/addons/controls/OrbitControls.js'
+
+            let elem = document.getElementById("stl-render");
+            let camera = new THREE.PerspectiveCamera(70, elem.clientWidth / elem.clientHeight, 1, 1000);
+            let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(elem.clientWidth, elem.clientHeight);
+            elem.appendChild(renderer.domElement);
+            let controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.rotateSpeed = 0.05;
+            controls.dampingFactor = 0.1;
+            controls.enableZoom = true;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2;
+            let animate = scene => {
+                controls.update();
+                renderer.render(scene, camera);
+                requestAnimationFrame(() => {
+                    return animate(scene)
+                });
+            };
+            let render_model = async path => {
+                console.log("render_model", path);
+                let scene = new THREE.Scene();
+                scene.add(new THREE.HemisphereLight(0xffffff, 1.5));
+                let loader = new STLLoader();
+                let geometry = await new Promise((r, j) => {
+                    console.log("trying to load", path);
+                    try {
+                        loader.load(path, (geo) => {
+                            console.log("resolved geo", geo);
+                            return r(geo);
+                        });
+                    } catch (e) {
+                        return j(e);
+                    }
+                });
+                let material = new THREE.MeshPhongMaterial({
+                    color: 0xff5533,
+                    specular: 100,
+                    shininess: 100
+                });
+                let mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                let middle = new THREE.Vector3();
+                geometry.computeBoundingBox();
+                geometry.boundingBox.getCenter(middle);
+                mesh.geometry
+                    .applyMatrix4(new THREE.Matrix4()
+                        .makeTranslation(-middle.x, -middle.y, -middle.z));
+                let largestDimension = Math.max(geometry.boundingBox.max.x,
+                    geometry.boundingBox.max.y,
+                    geometry.boundingBox.max.z)
+                camera.position.z = largestDimension * 3;
+                requestAnimationFrame(() => {
+                    return animate(scene)
+                });
+            };
+
+            for (let btn of Array.from(document.querySelectorAll(".render-button"))) {
+                btn.addEventListener("click", async () => {
+                    console.log("clicked", btn.dataset.path);
+                    return await render_model(btn.dataset.path);
+                })
+            }
+            
+        </script>
+    </body>
+</html>
