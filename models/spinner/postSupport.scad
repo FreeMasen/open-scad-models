@@ -32,3 +32,7 @@ module postSupport(height) {
         ]);
     }
 }
+__RENDER_MODULE = false;
+if (__RENDER_MODULE) {
+    postSupport(height = 25);
+}

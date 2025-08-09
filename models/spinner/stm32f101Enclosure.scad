@@ -55,3 +55,8 @@ module stm32101_enclosure() {
         ], center=true);
     }
 }
+
+__RENDER_MODULE = false;
+if (__RENDER_MODULE) {
+    stm32101_enclosure();
+}

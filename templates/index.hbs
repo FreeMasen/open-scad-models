@@ -53,7 +53,12 @@
                     <tbody>
                     {{#each stls}}
                     <tr>
-                        <td>{{@key}}</td>
+                        <td>
+                            <div>
+                            <span>{{@key}}</span>
+                            <img src="{{imgs[{{@key}}]}}" />
+                            </div>
+                            </td>
                         <td>
                             <button class="nes-btn render-button" data-path="renders/{{this}}"></button>
                         </td>

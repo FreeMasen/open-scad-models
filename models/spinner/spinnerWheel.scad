@@ -20,3 +20,8 @@ module spinnerWheel(radius, holeDiameter = 1.9) {
         
     }
 }
+
+__RENDER_MODULE = false;
+if (__RENDER_MODULE) {
+    spinnerWheel(25);
+}
