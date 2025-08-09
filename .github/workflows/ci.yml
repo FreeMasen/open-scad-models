@@ -41,7 +41,12 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
       - name: render
-        run: node $GITHUB_WORKSPACE/.github/index.mjs
+        run: | 
+          #! /bin/bash
+
+          set -e
+          node $GITHUB_WORKSPACE/.github/index.mjs "$GITHUB_WORKSPACE"
+          ls site
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
