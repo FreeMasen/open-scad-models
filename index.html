@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+        <style>
+            body {
+                width:100%;
+                display:flex;
+                flex-flow:column;
+                align-items:center;
+            }
+            header {
+                width: 100%;
+                text-align: center;
+            }
+            main {
+                min-width: 500px;
+                max-width: 900px;
+            }
+
+            #stl-render {
+                border-radius: 30%;
+                margin: 2px;
+                min-width: 795px;
+                min-height: 795px;
+                background-color: #fff;
+            }
+
+            #model-container {
+                margin-top: 12px;
+                margin-bottom: 12px;
+                min-width: 800px;
+                min-height: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Freemasen's Models</h1>
+        </header>
+        <main>
+            <div id="file-list" class="nes-container with-title is-dark">
+                <h2 class="title">Files</h2>
+                <table class="nes-table is-bordered is-centered is-dark">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Render</th>
+                            <th>Download<br />.stl</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>CanStand2.0</span>
+                            <img src="img/CanStand2.0.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/CanStand2.0.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/CanStand2.0.stl" download="renders/CanStand2.0.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>CanStand3.0-Short</span>
+                            <img src="img/CanStand3.0-Short.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/CanStand3.0-Short.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/CanStand3.0-Short.stl" download="renders/CanStand3.0-Short.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>CanStand3.0-Tall</span>
+                            <img src="img/CanStand3.0-Tall.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/CanStand3.0-Tall.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/CanStand3.0-Tall.stl" download="renders/CanStand3.0-Tall.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>art-hook-a</span>
+                            <img src="img/art-hook-a.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/art-hook-a.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/art-hook-a.stl" download="renders/art-hook-a.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>art-hook-b</span>
+                            <img src="img/art-hook-b.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/art-hook-b.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/art-hook-b.stl" download="renders/art-hook-b.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>candelHolder</span>
+                            <img src="img/candelHolder.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/candelHolder.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/candelHolder.stl" download="renders/candelHolder.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>pegboard-mount-cap</span>
+                            <img src="img/pegboard-mount-cap.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/pegboard-mount-cap.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/pegboard-mount-cap.stl" download="renders/pegboard-mount-cap.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>pegboard-mount</span>
+                            <img src="img/pegboard-mount.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/pegboard-mount.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/pegboard-mount.stl" download="renders/pegboard-mount.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>small-tree-stand</span>
+                            <img src="img/small-tree-stand.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/small-tree-stand.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/small-tree-stand.stl" download="renders/small-tree-stand.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_cylinderAttacher</span>
+                            <img src="img/spinner/cylinderAttacher.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/cylinderAttacher.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/cylinderAttacher.stl" download="renders/spinner/cylinderAttacher.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_postSupport</span>
+                            <img src="img/spinner/postSupport.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/postSupport.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/postSupport.stl" download="renders/spinner/postSupport.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_spinner</span>
+                            <img src="img/spinner/spinner.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/spinner.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/spinner.stl" download="renders/spinner/spinner.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_spinnerCylindar</span>
+                            <img src="img/spinner/spinnerCylindar.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/spinnerCylindar.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/spinnerCylindar.stl" download="renders/spinner/spinnerCylindar.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_spinnerLargeWheel</span>
+                            <img src="img/spinner/spinnerLargeWheel.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/spinnerLargeWheel.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/spinnerLargeWheel.stl" download="renders/spinner/spinnerLargeWheel.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_spinnerSmallWheel</span>
+                            <img src="img/spinner/spinnerSmallWheel.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/spinnerSmallWheel.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/spinnerSmallWheel.stl" download="renders/spinner/spinnerSmallWheel.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_spinnerWheel</span>
+                            <img src="img/spinner/spinnerWheel.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/spinnerWheel.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/spinnerWheel.stl" download="renders/spinner/spinnerWheel.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>spinner_stm32f101Enclosure</span>
+                            <img src="img/spinner/stm32f101Enclosure.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/spinner/stm32f101Enclosure.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/spinner/stm32f101Enclosure.stl" download="renders/spinner/stm32f101Enclosure.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>squareStencil</span>
+                            <img src="img/squareStencil.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/squareStencil.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/squareStencil.stl" download="renders/squareStencil.stl" title="download">V</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <span>support-arch-module</span>
+                            <img src="img/support-arch-module.png" />
+                            </div>
+                            </td>
+                        <td>
+                            <button class="nes-btn render-button" data-path="renders/support-arch-module.stl" title="render">></button>
+                        </td>
+                        <td><a class="nes-btn" href="renders/support-arch-module.stl" download="renders/support-arch-module.stl" title="download">V</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <div id="model-container" class="nes-container with-title is-dark">
+            <h2 class="title">Model</h2>
+            <div id="stl-render"></div>
+        </div>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+                }
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js"
+            integrity="sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="module">
+            import * as THREE from 'three';
+
+            import Stats from 'three/addons/libs/stats.module.js';
+
+            import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+            import { OrbitControls  } from 'three/addons/controls/OrbitControls.js'
+
+            let elem = document.getElementById("stl-render");
+            let camera = new THREE.PerspectiveCamera(90, elem.clientWidth / elem.clientHeight, 1, 1000);
+            let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(elem.clientWidth, elem.clientHeight);
+            elem.appendChild(renderer.domElement);
+            let controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.enableRotate = true;
+            controls.dampingFactor = 0.1;
+            controls.enableZoom = true;
+            let animate = (scene, diff) => {
+                controls.update();
+                renderer.render(scene, camera);
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
+                });
+            };
+            let render_model = async path => {
+                console.log("render_model", path);
+                let scene = new THREE.Scene();
+                scene.add(new THREE.HemisphereLight(0xffffff, 1.5));
+                let loader = new STLLoader();
+                let geometry = await new Promise((r, j) => {
+                    console.log("trying to load", path);
+                    try {
+                        loader.load(path, (geo) => {
+                            console.log("resolved geo", geo);
+                            return r(geo);
+                        });
+                    } catch (e) {
+                        return j(e);
+                    }
+                });
+                let material = new THREE.MeshPhongMaterial({
+                    color: 0xff5533,
+                    specular: 100,
+                    shininess: 100
+                });
+                let mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                let middle = new THREE.Vector3();
+                geometry.computeBoundingBox();
+                geometry.boundingBox.getCenter(middle);
+                mesh.geometry
+                    .applyMatrix4(new THREE.Matrix4()
+                        .makeTranslation(-middle.x, -middle.y, -middle.z));
+                let largestDimension = Math.max(geometry.boundingBox.max.x,
+                    geometry.boundingBox.max.y,
+                    geometry.boundingBox.max.z)
+                camera.position.z = largestDimension * 3;
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
+                });
+            };
+
+            for (let btn of Array.from(document.querySelectorAll(".render-button"))) {
+                btn.addEventListener("click", async () => {
+                    console.log("clicked", btn.dataset.path);
+                    return await render_model(btn.dataset.path);
+                })
+            }
+            
+        </script>
+    </body>
+</html>
