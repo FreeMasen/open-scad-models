@@ -38,34 +38,10 @@ jobs:
           && mkdir -p $GITHUB_WORKSPACE/MCAD \
           && tar -xf ./mcad.tar.gz -C $GITHUB_WORKSPACE/MCAD --strip-components 1 \
           && rm ./mcad.tar.gz
+      - name: setup node
+        uses: actions/setup-node@v4
       - name: render
-        run: |
-          #!/bin/bash
-          
-          set -e
-          SITE_BASE="$GITHUB_WORKSPACE/site"
-          RENDERS="$SITE_BASE/renders"
-          mkdir -p $RENDERS
-          PARAMS="$SITE_BASE/parameters.json"
-          echo $PARAMS
-          echo '{"stls": {}}' > $PARAMS
-          cat $PARAMS
-          export OPENSCADPATH="$OPENSCADPATH:$GITHUB_WORKSPACE/MCAD:$GITHUB_WORKSPACE"
-          for f in $GITHUB_WORKSPACE/models/*.scad
-          do
-              fn=$(basename $f)
-              fn="${fn%.*}"
-              echo $f
-              xvfb-run --auto-servernum --server-args "-screen 0 1024x768x24" openscad -o "$RENDERS/$fn.stl" -P default "$f"
-              OBJ="{\"$fn\": \"$fn.stl\"}"
-              
-              echo $(jq ".stls += {\"$fn\": \"$fn.stl\"}" $PARAMS) > $PARAMS
-              cat $PARAMS
-          done
-          rm -rf $GITHUB_WORKSPACE/MCAD
-          echo "params:"
-          cat $PARAMS
-          hbs --data "$PARAMS" -o "$SITE_BASE" -- "$GITHUB_WORKSPACE/templates/index.hbs"
+        run: node $GITHUB_WORKSPACE/.github/index.mjs
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
