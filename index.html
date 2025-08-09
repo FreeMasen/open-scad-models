@@ -167,11 +167,11 @@
             controls.enableZoom = true;
             controls.autoRotate = true;
             controls.autoRotateSpeed = 2;
-            let animate = scene => {
-                controls.update();
+            let animate = (scene, diff) => {
+                controls.update(diff);
                 renderer.render(scene, camera);
-                requestAnimationFrame(() => {
-                    return animate(scene)
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
                 });
             };
             let render_model = async path => {
@@ -207,8 +207,8 @@
                     geometry.boundingBox.max.y,
                     geometry.boundingBox.max.z)
                 camera.position.z = largestDimension * 3;
-                requestAnimationFrame(() => {
-                    return animate(scene)
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
                 });
             };
 
