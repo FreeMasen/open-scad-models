@@ -355,9 +355,11 @@
                 }
                 document.getElementById(name).classList.add("is-primary");
                 title_ele.innerText = name || "Model";
+                renderer_ele.innerText = "";
                 let scene = new THREE.Scene();
                 scene.background = 0x010101;
                 scene.add(new THREE.HemisphereLight(0xefefef, 1.5));
+                scene.add(new THREE.DirectionalLight(0xffffff, 0.5));
                 let loader = new STLLoader();
                 let geometry = await new Promise((r, j) => {
                     console.log("trying to load", path);
