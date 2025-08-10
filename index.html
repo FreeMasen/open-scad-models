@@ -321,6 +321,9 @@
             const SELECTED_KEY = "selected-model";
             const SELECTED_NAME_KEY = "selected-model-name";
 
+            /**
+            * @type HTMLDivElement
+            */
             let renderer_ele;
             let title_ele;
 
@@ -355,7 +358,10 @@
                 }
                 document.getElementById(name).classList.add("is-primary");
                 title_ele.innerText = name || "Model";
-                renderer_ele.innerText = "";
+                while (renderer_ele.hasChildNodes()) {
+                    renderer_ele.removeChild(renderer_ele.lastChild);
+                }
+                renderer_ele.appendChild(renderer.domElement);
                 let scene = new THREE.Scene();
                 scene.background = 0x010101;
                 scene.add(new THREE.HemisphereLight(0xefefef, 1.5));
