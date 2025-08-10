@@ -36,14 +36,14 @@ union() {
     roundedBox(size = [
         25, 2, 15
     ], radius = radius, sidesonly = false);
-    color([1,0,0])
+    // color([1,0,0])
     translate(v = [
         0, -9, 0
     ]) 
     roundedBox(size = [
         25, 5, 50
     ], radius = radius, sidesonly = false);
-    color([0,1,0])
+    // color([0,1,0])
     translate(v = [
         0, 8.5, 0
     ]) 

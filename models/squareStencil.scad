@@ -6,7 +6,7 @@ module square_pair(x, y) {
     translate([
         x, y, 0
     ])
-    color(c = "green") 
+    // color(c = "green") 
     union() {
         roundedBox(size=[
             $qi,$qi,16

@@ -3,10 +3,10 @@ radius=0.8;
 leg_length=80;
 $fn=100;
 // $fn=25;
-color([
-    1, 0, 0,
-    0.2,
-])
+// color([
+//     1, 0, 0,
+//     0.2,
+// ])
 translate(v = [
     0,
     37.5,
@@ -21,10 +21,10 @@ roundedBox(size = [
     5, 5, leg_length
 ], radius = radius, sidesonly = false);
 
-color([
-    0, 1, 0,
-    0.2,
-])
+// color([
+//     0, 1, 0,
+//     0.2,
+// ])
 translate(v = [
     0,
     -37.5,
@@ -43,10 +43,10 @@ module cross_beam() {
     difference() {
         union() {
             difference() {
-                color([
-                    0, 1, 1,
-                    0.2,
-                ])
+                // color([
+                //     0, 1, 1,
+                //     0.2,
+                // ])
                 translate(v = [
                     0,
                     0,
@@ -82,7 +82,7 @@ module cross_beam() {
                 90,
                 0,
             ])
-            color([0.1, 0.5, 0.3])
+            // color([0.1, 0.5, 0.3])
             roundedBox(size = [
                 2,
                 2,

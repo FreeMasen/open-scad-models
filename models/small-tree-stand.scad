@@ -59,13 +59,13 @@ module base() {
 }
 
 difference() {
-    color([0,1,0, 0.5])
+    // color([0,1,0, 0.5])
     union() {
         base();
         linear_extrude(height = 5, $fn=res) 
         circle(d = 95);
     }
-    color([0,0,1, 0.5])
+    // color([0,0,1, 0.5])
     translate([
         0,
         0,

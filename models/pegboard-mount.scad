@@ -49,7 +49,7 @@ union() {
 
 
     difference() {
-        color([0, 1, 0, 0.5])
+        // color([0, 1, 0, 0.5])
             roundedBox(size = [
                 5, 35, 35
             ], radius = 0.8, sidesonly = false);

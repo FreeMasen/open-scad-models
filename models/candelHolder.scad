@@ -8,31 +8,31 @@ difference() {
         sphere(r=35, $fn=res);
         
         // right
-            color([0,1,0], alpha=0.5)
+            // color([0,1,0], alpha=0.5)
             translate(v = [width,0, 0]) 
         cube([35,35,35], center=true);
     
         //back
-            color([0.3,1,0], alpha=0.5)
+            // color([0.3,1,0], alpha=0.5)
             translate(v = [0,width, 0]) 
         cube([35,35,35], center=true);
 
     // front
-        color([1,1,0], alpha=0.5)
+        // color([1,1,0], alpha=0.5)
         translate(v = [0,-width, 0]) 
     cube([35,35,35], center=true);
 
     //left
-        color([1,1,1], alpha=0.5)
+        // color([1,1,1], alpha=0.5)
         translate(v = [-width,0, 0]) 
     cube([35,35,35], center=true);
 
     // top
-        color([0,1,1], alpha=0.5)
+        // color([0,1,1], alpha=0.5)
         translate(v = [0,0,height]) 
     cube([35,35,35], center=true);
     // bottom
-        color([0,0,0], alpha=0.5)
+        // color([0,0,0], alpha=0.5)
         translate(v = [0,0,-height+2]) 
     cube([35,35,35], center=true);
 
