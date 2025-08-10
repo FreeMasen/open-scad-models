@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+        <style>
+            body {
+                width:100%;
+                display:flex;
+                flex-flow:column;
+                align-items:center;
+            }
+
+            header {
+                width: 100%;
+                text-align: center;
+            }
+
+            main {
+                min-width: 500px;
+                max-width: 900px;
+            }
+
+            #model-container {
+                margin-top: 12px;
+                margin-bottom: 12px;
+                min-width: 800px;
+                min-height: 800px;
+            }
+
+            #render-container {
+                border-radius: 30%;
+            }
+
+            #stl-render {
+                margin: 2px;
+                min-width: 795px;
+                min-height: 795px;
+                background-color: #000;
+            }
+
+            .preview-image {
+                width: 128px;
+                height: 128px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Freemasen's Models</h1>
+        </header>
+        <main>
+            <div id="model-container" class="nes-container with-title is-dark">
+                <h2 id="stl-title" class="title">Model</h2>
+                <div id="render-container">
+                    <div id="stl-render">Select Model Below</div>
+                </div>
+            </div>
+            <div id="file-list" class="nes-container with-title is-dark">
+                <h2 class="title">Files</h2>
+                <table class="nes-table is-bordered is-centered is-dark">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Render</th>
+                            <th>Download<br />.stl</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+                }
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js"
+            integrity="sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="module">
+            import * as THREE from 'three';
+            import Stats from 'three/addons/libs/stats.module.js';
+            import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+            import { OrbitControls  } from 'three/addons/controls/OrbitControls.js';
+
+            const RENDERED_TITLE_ID = "stl-title";
+            const RENDERER_ID = "stl-render";
+            const SELECTED_KEY = "selected-model";
+            const SELECTED_NAME_KEY = "selected-model-name";
+
+            let renderer_ele;
+            let title_ele;
+
+            for (let i = 0; i < 10; i++) {
+                if (renderer_ele) {
+                    break;
+                }
+                await new Promise(r => setTimeout(r, 300));
+                renderer_ele = document.getElementById(RENDERER_ID);
+                title_ele = document.getElementById(RENDERED_TITLE_ID);
+            }
+
+            let camera = new THREE.PerspectiveCamera(90, renderer_ele.clientWidth / renderer_ele.clientHeight, 1, 1000);
+            let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(renderer_ele.clientWidth, renderer_ele.clientHeight);
+            renderer_ele.appendChild(renderer.domElement);
+            let controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.enableRotate = true;
+            controls.dampingFactor = 0.1;
+            controls.enableZoom = true;
+            let animate = (scene, diff) => {
+                controls.update();
+                renderer.render(scene, camera);
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
+                });
+            };
+            let render_model = async (path, name) => {
+                for (let ele of Array.from(document.querySelectorAll(".name"))) {
+                    ele.classList.remove("is-primary");
+                }
+                document.getElementById(name).classList.add("is-primary");
+                title_ele.innerText = name || "Model";
+                let scene = new THREE.Scene();
+                scene.background = 0x010101;
+                scene.add(new THREE.HemisphereLight(0xefefef, 1.5));
+                let loader = new STLLoader();
+                let geometry = await new Promise((r, j) => {
+                    console.log("trying to load", path);
+                    try {
+                        loader.load(path, (geo) => {
+                            console.log("resolved geo", geo);
+                            return r(geo);
+                        });
+                    } catch (e) {
+                        return j(e);
+                    }
+                });
+                let material = new THREE.MeshPhongMaterial({
+                    color: 0xffffff,
+                    specular: 130,
+                    shininess: 180,
+                    flatShading: true,
+                });
+                let mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                let middle = new THREE.Vector3();
+                geometry.computeBoundingBox();
+                geometry.boundingBox.getCenter(middle);
+                mesh.geometry
+                    .applyMatrix4(new THREE.Matrix4()
+                        .makeTranslation(middle.x, -middle.y, -middle.z));
+                let largestDimension = Math.max(geometry.boundingBox.max.x,
+                    geometry.boundingBox.max.y,
+                    geometry.boundingBox.max.z)
+                camera.position.z = largestDimension * 3;
+                camera.fov = 70;
+                requestAnimationFrame(diff => {
+                    return animate(scene, diff)
+                });
+            };
+
+            for (let btn of Array.from(document.querySelectorAll(".render-button"))) {
+                btn.addEventListener("click", async () => {
+                    console.log("clicked", btn.dataset.path, btn.dataset.name);
+                    localStorage.setItem(SELECTED_KEY, btn.dataset.path);
+                    localStorage.setItem(SELECTED_NAME_KEY, btn.dataset.name);
+                    return await render_model(btn.dataset.path, btn.dataset.name);
+                });
+            }
+            let current = localStorage.getItem(SELECTED_KEY);
+            let name = localStorage.getItem(SELECTED_NAME_KEY);
+            if (current) {
+                await render_model(current, name);
+            }
+        </script>
+    </body>
+</html>
