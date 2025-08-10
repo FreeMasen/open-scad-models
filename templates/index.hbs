@@ -43,6 +43,16 @@
                 width: 128px;
                 height: 128px;
             }
+
+            .model-cell-content {
+                display: flex;
+                flex-flow: column;
+                justify-content: flex-start;
+            }
+
+            .name {
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -70,7 +80,7 @@
                     {{#each models}}
                     <tr>
                         <td>
-                            <div>
+                            <div class="model-cell-content">
                                 <span class="name nes-text" id="{{@key}}">{{@key}}</span>
                                 <img class="preview-image" src="{{img}}" />
                             </div>
