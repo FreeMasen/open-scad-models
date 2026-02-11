@@ -52,8 +52,8 @@ let exec_async = async args => {
                 if (err) {
                     console.error(err)
                 }
-                if ((e && e.toString().contains(TOP_LEVEL_ERROR_MESSAGE))
-                    || err.contains(TOP_LEVEL_ERROR_MESSAGE)) {
+                if ((e && e.message.includes(TOP_LEVEL_ERROR_MESSAGE))
+                    || err.includes(TOP_LEVEL_ERROR_MESSAGE)) {
                     return r();
                 }
                 if (e) {
