@@ -18,6 +18,7 @@ const IMGS_PATH = join(SITE_PATH, "img");
 const TEMPLATES_PATH = join(repo_root, "templates");
 const PARAMS_PATH = join(SITE_PATH, "params.json");
 const SCAD_RE = /\.scad$/;
+const TOP_LEVEL_ERROR_MESSAGE = "Current top level object is empty";
 
 /**
  * collect all file paths
@@ -47,10 +48,16 @@ let exec_async = async args => {
                 if (out) {
                     console.log(out);
                 }
+                
                 if (err) {
                     console.error(err)
                 }
+                if ((e && e.toString().contains(TOP_LEVEL_ERROR_MESSAGE))
+                    || err.contains(TOP_LEVEL_ERROR_MESSAGE)) {
+                    return r();
+                }
                 if (e) {
+                    
                     return j(e);
                 }
                 return r();
