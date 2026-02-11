@@ -31,7 +31,7 @@ module cone(
         polygon(tri_points);
 }
 
-peg_offset = 12.5;
+peg_offset = 25.4/2;
 
 union() {
     for (x = [peg_offset, -peg_offset]) {

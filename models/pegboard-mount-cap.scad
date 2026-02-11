@@ -1,6 +1,7 @@
 use <MCAD/boxes.scad>
 
 $fn = 12;
+peg_offset = 25.4/2;
 
 module peg() {
     translate(v = [
@@ -15,7 +16,7 @@ roundedBox(size = [
 ], radius = 0.8, sidesonly = false);
 
 translate(v = [
-    0, 12.5, 12.5
+    0, peg_offset, peg_offset
 ])
 rotate(a = [
     90, 0, 90
@@ -24,7 +25,7 @@ rotate(a = [
 peg();
 
 translate(v = [
-    0, -12.5, -12.5
+    0, -peg_offset, -peg_offset
 ])
 rotate(a = [
     90, 0, 90
@@ -33,7 +34,7 @@ rotate(a = [
 peg();
 
 translate(v = [
-    0, 12.5, -12.5
+    0, peg_offset, -peg_offset
 ])
 rotate(a = [
     90, 0, 90
@@ -42,7 +43,7 @@ rotate(a = [
 peg();
 
 translate(v = [
-    0, -12.5, 12.5
+    0, -peg_offset, peg_offset
 ])
 rotate(a = [
     90, 0, 90

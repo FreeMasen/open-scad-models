@@ -141,6 +141,7 @@
             controls.enableRotate = true;
             controls.dampingFactor = 0.1;
             controls.enableZoom = true;
+            let dir_light = new THREE.DirectionalLight(0xffffff, 0.5);
             let animate = (scene, diff) => {
                 controls.update();
                 renderer.render(scene, camera);
@@ -161,7 +162,8 @@
                 let scene = new THREE.Scene();
                 scene.background = 0x010101;
                 scene.add(new THREE.HemisphereLight(0xefefef, 1.5));
-                scene.add(new THREE.DirectionalLight(0xffffff, 0.5));
+                
+                scene.add(dir_light);
                 let loader = new STLLoader();
                 let geometry = await new Promise((r, j) => {
                     console.log("trying to load", path);
