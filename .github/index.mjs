@@ -2,7 +2,6 @@ import { mkdir, readdir, stat, writeFile, readFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { exec } from "node:child_process";
 import { fileURLToPath } from 'node:url';
-import { stdout } from "node:process";
 
 const repo_root = (() => {
     console.log(process.argv.length, process.argv);
@@ -70,26 +69,30 @@ let exec_async = async args => {
     });
 }
 
+let cmd_start;
+if (process.platform == "darwin") {
+    cmd_start = [
+        "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+    ];
+} else {
+    cmd_start = [
+            "xvfb-run",
+            "--auto-servernum",
+            "--server-args",
+            '"-screen 0 1024x768x24"',
+            "openscad"
+        ];
+}
+
+
 let render_stl = async (src, dest) => {
     let cmd_parts = [
-        "xvfb-run",
-        "--auto-servernum",
-        "--server-args",
-        '"-screen 0 1024x768x24"',
-        "openscad",
+        ...cmd_start,
         "-o", dest,
         "-P", "default",
         "-D__RENDER_MODULE=true",
         src
     ]
-    
-    if (process.platform == "darwin") {
-        let part;
-        while (part != "openscad") {
-            part = cmd_parts.shift()
-        }
-        cmd_parts.unshift("/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD")
-    }
     console.log("rendering", src);
     return await exec_async(
         cmd_parts.join(" ")
@@ -104,11 +107,7 @@ let render_stl = async (src, dest) => {
  */
 let render_png = async (src, dest) => {
     let cmd_parts = [
-        "xvfb-run",
-        "--auto-servernum",
-        "--server-args",
-        '"-screen 0 1024x768x24"',
-        "openscad",
+        ...cmd_start,
         "-o", dest,
         " --imgsize=512,512",
         "-P", "default",
@@ -132,6 +131,7 @@ let hbs = async params => {
     try {
         await exec_async(`hbs --data '${params}' -o '${SITE_PATH}' -- '${template}'`);
     } catch (e) {
+        console.error("ignoring this error:", e);
     }
     let p = await readFile(params, "utf-8");
     console.log("params:", p);
