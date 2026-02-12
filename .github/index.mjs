@@ -2,6 +2,7 @@ import { mkdir, readdir, stat, writeFile, readFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { exec } from "node:child_process";
 import { fileURLToPath } from 'node:url';
+import { stdout } from "node:process";
 
 const repo_root = (() => {
     console.log(process.argv.length, process.argv);
@@ -46,18 +47,22 @@ let exec_async = async args => {
         exec(args,
             (e, out, err) => {
                 if (out) {
+                    console.log("stdout:");
                     console.log(out);
+                    console.error("----------");
                 }
                 
                 if (err) {
+                    console.error("stderr:")
                     console.error(err)
+                    console.error("----------");
                 }
-                if ((e && e.message.includes(TOP_LEVEL_ERROR_MESSAGE))
+                if (out.includes(TOP_LEVEL_ERROR_MESSAGE) 
+                    || (e && e.message.includes(TOP_LEVEL_ERROR_MESSAGE))
                     || err.includes(TOP_LEVEL_ERROR_MESSAGE)) {
                     return r();
                 }
                 if (e) {
-                    
                     return j(e);
                 }
                 return r();
