@@ -48,6 +48,8 @@ jobs:
           && mkdir -p $GITHUB_WORKSPACE/fillets \
           && tar -xf ./fillets.tar.gz -C $GITHUB_WORKSPACE/fillets --strip-components 1 \
           && rm ./fillets.tar.gz \
+          && cp ./fillets/fillets2d.scad ./fillets/fillets2D.scad \
+          && cp ./fillets/fillets3d.scad ./fillets/fillets3D.scad
           && ls ./fillets
 
       - name: setup node
