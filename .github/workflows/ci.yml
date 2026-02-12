@@ -47,7 +47,9 @@ jobs:
           https://api.github.com/repos/ademuri/openscad-fillets/tarball/main -o ./fillets.tar.gz \
           && mkdir -p $GITHUB_WORKSPACE/fillets \
           && tar -xf ./fillets.tar.gz -C $GITHUB_WORKSPACE/fillets --strip-components 1 \
-          && rm ./fillets.tar.gz
+          && rm ./fillets.tar.gz \
+          && ls ./fillets
+
       - name: setup node
         uses: actions/setup-node@v4
       - name: render
