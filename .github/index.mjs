@@ -32,6 +32,9 @@ let collect_all_paths = async root => {
         let p = join(root, f);
         let s = await stat(p);
         if (s.isDirectory()) {
+            if (f.endsWith("parts")) {
+                continue;
+            }
             ret.push(...(await collect_all_paths(p)));
         } else if (f.endsWith(".scad")) {
             ret.push(p);
