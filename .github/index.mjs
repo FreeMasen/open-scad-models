@@ -1,4 +1,4 @@
-import { mkdir, readdir, stat, writeFile, readFile } from "node:fs/promises";
+import { mkdir, readdir, stat, writeFile, readFile, access } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { exec } from "node:child_process";
 import { fileURLToPath } from 'node:url';
@@ -87,8 +87,23 @@ if (process.platform == "darwin") {
         ];
 }
 
+let file_exists = async (path) => {
+    try {
+        await access(path);
+        return true;
+    } catch {
+        // assume file does not exist
+    }
+    return false;
+};
+
 
 let render_stl = async (src, dest) => {
+    if (process.platform == "darwin"
+        && await file_exists(dest)
+    ) {
+        return console.log(dest, "already exists, skipping");
+    }
     let cmd_parts = [
         ...cmd_start,
         "-o", dest,
@@ -109,6 +124,11 @@ let render_stl = async (src, dest) => {
  * @returns 
  */
 let render_png = async (src, dest) => {
+    if (process.platform == "darwin"
+        && await file_exists(dest)
+    ) {
+        return console.log(dest, "already exists, skipping");
+    }
     let cmd_parts = [
         ...cmd_start,
         "-o", dest,
@@ -153,6 +173,7 @@ let hbs = async params => {
     await mkdir(IMGS_PATH, {
         recursive: true,
     });
+    let ct = 0;
     for (let path of paths) {
         let dest = path.replace(ROOT_PATH, RENDERS_PATH).replace(SCAD_RE, ".stl");
         let img_dest = path.replace(ROOT_PATH, IMGS_PATH).replace(SCAD_RE, ".png");
@@ -181,6 +202,8 @@ let hbs = async params => {
         };
         await render_stl(path, dest);
         await render_png(path, img_dest);
+        ct += 1;
+        console.log(`${((ct / paths.length) * 100).toFixed(2)}% Complete`);
     }
     await writeFile(PARAMS_PATH, JSON.stringify(params));
     await hbs(PARAMS_PATH);
