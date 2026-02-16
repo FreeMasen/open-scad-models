@@ -550,7 +550,7 @@
                 title_ele = document.getElementById(RENDERED_TITLE_ID);
             }
 
-            let camera = new THREE.PerspectiveCamera(90, renderer_ele.clientWidth / renderer_ele.clientHeight, 1, 1000);
+            let camera = new THREE.PerspectiveCamera(45, renderer_ele.clientWidth / renderer_ele.clientHeight, 1, 1000);
             let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(renderer_ele.clientWidth, renderer_ele.clientHeight);
             renderer_ele.appendChild(renderer.domElement);
@@ -601,6 +601,7 @@
                     flatShading: true,
                 });
                 let mesh = new THREE.Mesh(geometry, material);
+                
                 scene.add(mesh);
                 let middle = new THREE.Vector3();
                 geometry.computeBoundingBox();
