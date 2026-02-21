@@ -5,7 +5,7 @@ bar_width = 5;
 bar_height = 5;
 side_length = 180;
 
-module foot() {
+module foot2() {
 
   module toe() {
     translate([-5.5, 160, 30])
@@ -48,6 +48,14 @@ module foot() {
     translate([0, 0, 29.9])
       insert(15, 20, 20);
     body(20, 20, 30);
+    resize([
+      0, 100, 0
+    ])
+    toe();
+    resize([
+      0, 100, 0
+    ])
+    rotate([0, 0, 180])
     toe();
   }
 }
